@@ -3,6 +3,8 @@ from flask import Blueprint, jsonify, request
 from playhouse.shortcuts import model_to_dict
 
 listings = Blueprint('listings', 'listings')
+
+
 # Index Route
 @listings.route('/', methods=['GET'])
 def get_all_listings():
