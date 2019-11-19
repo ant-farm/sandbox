@@ -36,6 +36,9 @@ def after_request(response):
 CORS(listings, origins=['http://localhost:3000'], supports_credentials=True)
 CORS(agents, origins=['http://localhost:3000'], supports_credentials=True)
 
+app.register_blueprint(listings, url_prefix='/api/v1/listings')
+app.register_blueprint(agents, url_prefix='/api/v1/agents')
+
 if __name__ == '__main__':
 	models.initialize()
 	app.run(debug=DEBUG, port=PORT)

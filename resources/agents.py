@@ -27,7 +27,7 @@ def register():
 		print(agent_dict)
 		del agent_dict['password']
 
-		return jsonify(data=agent_dict, status={'code': 201, 'message': 'Successfully registered! {}'.formate(agent_dict['email'])}), 201
+		return jsonify(data=agent_dict, status={'code': 201, 'message': 'Successfully registered! {}'.format(agent_dict['email'])}), 201
 
 
 @agents.route('/login', methods=['POST'])
