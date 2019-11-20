@@ -1,5 +1,6 @@
 import models
 from flask import Blueprint, jsonify, request
+from flask_login import current_user, login_required
 from playhouse.shortcuts import model_to_dict
 
 listings = Blueprint('listings', 'listings')
@@ -9,7 +10,8 @@ listings = Blueprint('listings', 'listings')
 @listings.route('/', methods=['GET'])
 def get_all_listings():
 	try: 
-		listings = [model_to_dict(listings) for listings in models.Listing.select()]
+		query = models.Listing.select().where(models.Listing.agent_id == current_user.id)
+		listings = [model_to_dict(listings) for listings in query]
 		print(listings)
 		return jsonify(data=listings, status={'code': 200, 'message': 'Successful'}), 200
 	except models.DoesNotExist:
@@ -20,7 +22,8 @@ def get_all_listings():
 def create_listing():
 	payload = request.get_json()
 	print(type(payload), 'payload')
-	listings = models.Listing.create(**payload)
+	listings = models.Listing.create(**payload,
+		agent_id=current_user.id)
 	print(listings.__dict__)
 	print(dir(listings))
 

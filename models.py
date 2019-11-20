@@ -20,7 +20,7 @@ class Listing(Model):
 	client_number = CharField(unique=True)
 	property_address = CharField(unique=True)
 	list_price = IntegerField()
-	agent = ForeignKeyField(Agent, backref='agents')
+	agent_id = ForeignKeyField(Agent, backref='agents')
 	days_on_market = DateTimeField(default=datetime.datetime.now)
 	
 
