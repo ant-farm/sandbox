@@ -11,6 +11,7 @@ class Agent(UserMixin, Model):
 	password = CharField()
 	phone_number = CharField(unique=True)
 	company_name = CharField()
+	# member_since = DateTimeField(default=datetime.datetime.now)
 
 	class Meta:
 		database = DATABASE
