@@ -34,8 +34,8 @@ def after_request(response):
 	g.db.close()
 	return response
 
-CORS(listings, origins=['http://localhost:3000'], supports_credentials=True)
-CORS(agents, origins=['http://localhost:3000'], supports_credentials=True)
+CORS(listings, origins=['http://localhost:3000', 'https://sandbox-app-at.herokuapp.com'], supports_credentials=True)
+CORS(agents, origins=['http://localhost:3000', 'https://sandbox-app-at.herokuapp.com'], supports_credentials=True)
 
 app.register_blueprint(listings, url_prefix='/api/v1/listings')
 app.register_blueprint(agents, url_prefix='/api/v1/agents')
